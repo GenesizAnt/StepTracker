@@ -94,9 +94,9 @@ class MonthData {
         int bestDaySerial = 0;
         int bestTemp = 0;
         for (int i = 0; i < monthDay.length; i++) {
-            if (monthDay[i] >= 10) {
+            if (monthDay[i] >= 10000) {
                 bestTemp++;
-                if (i == monthDay.length - 1 || monthDay[i + 1] < 10) {
+                if (i == monthDay.length - 1 || monthDay[i + 1] < 10000) {
                     if (bestDaySerial < bestTemp) {
                         bestDaySerial = bestTemp;
                     }
