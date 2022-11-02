@@ -29,9 +29,33 @@ public class Main {
                 converter.printDistance(stepTracker.getMonthData().get(userInputMonth).sumStepMonth());
                 converter.printBernKilocalories(stepTracker.getMonthData().get(userInputMonth).sumStepMonth());
             } else if (userInput == 3) {
-                System.out.println("Введите ежедневную цель шагов");
+                System.out.println("Введите новую ежедневную цель шагов");
                 int userInputTempStep = scannerTemp.nextInt();
                 stepTracker.setGoalStep(userInputTempStep);
+            } else if (userInput == 4) {
+                System.out.println("За какой месяц необходима статистика? Введите название");
+                String userInputMonth = scannerTemp.next();
+                System.out.println(stepTracker.getMonthData().get(userInputMonth).maxStepDay());
+            } else if (userInput == 5) {
+                System.out.println("За какой месяц необходима статистика? Введите название");
+                String userInputMonth = scannerTemp.next();
+                System.out.println(stepTracker.getMonthData().get(userInputMonth).averageStepDay());
+            } else if (userInput == 6) {
+                System.out.println("За какой месяц необходима статистика? Введите название");
+                String userInputMonth = scannerTemp.next();
+                stepTracker.getMonthData().get(userInputMonth).converter.printDistance(stepTracker.getMonthData().get(userInputMonth).sumStepMonth());
+            } else if (userInput == 7) {
+                System.out.println("За какой месяц необходима статистика? Введите название");
+                String userInputMonth = scannerTemp.next();
+                stepTracker.getMonthData().get(userInputMonth).converter.printBernKilocalories(stepTracker.getMonthData().get(userInputMonth).sumStepMonth());
+            } else if (userInput == 8) {
+                System.out.println("За какой месяц необходима статистика? Введите название");
+                String userInputMonth = scannerTemp.next();
+                System.out.println(stepTracker.getMonthData().get(userInputMonth).bestDaySerial());
+            } else if (userInput == 9) {
+                System.out.println("За какой месяц необходима статистика? Введите название");
+                String userInputMonth = scannerTemp.next();
+                stepTracker.printAllStatMonth(userInputMonth);
             }
             printMenu();
             userInput = scanner.nextInt();

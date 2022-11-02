@@ -5,7 +5,7 @@ public class StepTracker {
 
     private int goalStep;
     private HashMap<String, MonthData> monthData = new HashMap<>();
-    private String[] nameMonth = {"1", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
+    private String[] nameMonth = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
 
     public StepTracker() {
         for (int i = 0; i < 12; i++) {
@@ -26,13 +26,20 @@ public class StepTracker {
         this.goalStep = goalStep;
     }
 
-    public void printAllStatMonth () {
-
+    public void printAllStatMonth(String month) {
+        System.out.println("Полная статистика за месяц - " + month + "\n" +
+                "Общее кол-во пройденых шагов за месяц: " + monthData.get(month).sumStepMonth() + "\n" +
+                "Наибольшее кол-во шагов за день: " + monthData.get(month).maxStepDay() + "\n" +
+                "Среднее кол-во шагов: " + monthData.get(month).averageStepDay() + "\n" +
+                "Лучшая серия дней с выполненной целью: " + monthData.get(month).bestDaySerial());
+        monthData.get(month).converter.printBernKilocalories(monthData.get(month).sumStepMonth());
+        monthData.get(month).converter.printDistance(monthData.get(month).sumStepMonth());
     }
-
 }
 
 class MonthData {
+
+    public Converter converter = new Converter();
 
     private int[] monthDay = new int[29];
 
@@ -87,10 +94,12 @@ class MonthData {
         int bestDaySerial = 0;
         int bestTemp = 0;
         for (int i = 0; i < monthDay.length; i++) {
-            if (monthDay[i] >= 10000) {
+            if (monthDay[i] >= 10) {
                 bestTemp++;
-                if (i == monthDay.length - 1 || monthDay[i + 1] < 10000) {
-                    bestDaySerial = bestTemp;
+                if (i == monthDay.length - 1 || monthDay[i + 1] < 10) {
+                    if (bestDaySerial < bestTemp) {
+                        bestDaySerial = bestTemp;
+                    }
                     bestTemp = 0;
                 }
             }

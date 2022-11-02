@@ -7,13 +7,19 @@ public class Converter {
     private final double stepBernCalories = 0.5;
 
     public void printDistance (int step) {
+        if (step <= 0) {
+            System.out.println("Пройденное расстояние в киллометрах составило - 0");
+        } else {
         System.out.println(new DecimalFormat("Пройденное расстояние в киллометрах составило - " + "#0.00").format((step * stepLength) / 1000));
-
+        }
     }
 
     public void printBernKilocalories (int step) {
-        System.out.println(new DecimalFormat("Сожженное кол-во килокалорий составило - " + "#0.00").format((step * stepBernCalories) / 10));
-
+        if (step <= 0) {
+            System.out.println("Сожженное кол-во килокалорий составило - 0");
+        } else {
+            System.out.println(new DecimalFormat("Сожженное кол-во килокалорий составило - " + "#0.00").format((step * stepBernCalories) / 10));
+        }
     }
 
     public double getStepLength() {
